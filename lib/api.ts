@@ -1,4 +1,4 @@
-import Cosmic from 'cosmicjs'
+import Cosmic from 'cosmicjs';
 import {  Post, Posts, Preview , FeaturedPostNPosts} from '../interfaces';
 
 

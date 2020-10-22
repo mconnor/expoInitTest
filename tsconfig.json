@@ -3,14 +3,15 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "lib": [
-      "dom",
-      "esnext"
+        "dom",
+        "dom.iterable",
+        "esnext"
     ],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true,
+    "strict": false,
     "target": "es5",
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
