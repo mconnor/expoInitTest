@@ -1,5 +1,8 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { Card, Layout, Text, Button, List, ListItem } from '@ui-kitten/components';
+import { View } from 'react-native'
+ 
+import { StyleSheet } from 'react-native';
 import PostPreview from './post-preview';
 import { Post, Posts } from '../interfaces';
 
@@ -7,40 +10,49 @@ import { Post, Posts } from '../interfaces';
 
 
 
-const   MoreStories= ({ allPosts } : {allPosts: Posts}) => {
-   
-  return (
-    <View style={styles.marg}>
-      <Text style={styles.headline}>
-        More Brands
-      </Text>
-      <View>
-        {allPosts.map((post) => (
-          <PostPreview
-            key={post.slug}
-            title={post.title}
-            slug={post.slug}
-           
-          />
-        ))}
-      </View>
-    </View>
-  )
+const MoreStories = ({ allPosts }: { allPosts: Posts }) => {
+
+    return (
+        <Card style={styles.card}>
+            <Text style={styles.headline}>
+                More Brands
+            </Text>
+            <View>
+                {allPosts.map((post) => (
+                    <PostPreview
+                        key={post.slug}
+                        title={post.title}
+                        slug={post.slug}
+
+                    />
+                    
+                ))}
+            </View>
+        </Card>
+    )
 }
 
 
 const styles = StyleSheet.create({
-    marg: {
-        margin:50
+    topContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    card: {
+        flex: 1,
+        margin: 2,
+    },
+    footerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+    footerControl: {
+        marginHorizontal: 2,
     },
     headline: {
-        fontSize: 24,
-        fontWeight: '400'
-    },
-    text: {
-        fontSize: 16,
-    },
+        fontSize: 36
+    }
 });
 
 
-export default  MoreStories
+export default MoreStories

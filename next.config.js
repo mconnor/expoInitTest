@@ -1,8 +1,13 @@
-// @generated: @expo/next-adapter@2.1.41
-// Learn more: https://github.com/expo/expo/blob/master/docs/pages/versions/unversioned/guides/using-nextjs.md#withexpo
+const { withExpo } = require("@expo/next-adapter");
 
-const { withExpo } = require('@expo/next-adapter');
-
-module.exports = withExpo({
-  projectRoot: __dirname,
-});
+const withFonts = require("next-fonts");
+const withTM = require('next-transpile-modules')(['react-native', '@ui-kitten']); // pass the modules you would like to see transpiled
+module.exports = withTM(
+  withExpo(
+    withFonts(
+{
+        projectRoot: __dirname,
+      }
+    )
+  )
+);

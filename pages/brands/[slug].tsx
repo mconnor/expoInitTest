@@ -1,78 +1,64 @@
-import React , { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import * as eva from '@eva-design/eva';
+import { default as theme } from '../../custom-theme.json';
 
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext , GetStaticPropsResult} from 'next'
+import { ApplicationProvider, Layout, Text, Card } from '@ui-kitten/components';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import { StyleSheet, Text, View } from 'react-native';
+
 
 import { getAllBrandsWithSlug, getBrandAndMoreBrands } from '../../lib/api'
 import markdownToHtml from '../../lib/markdownToHtml'
 import Header from '../../components/head'
 import MoreStories from '../../components/more-stories'
-import {  Post, Posts, Preview } from '../../interfaces';
+import { Post, Posts, Preview } from '../../interfaces';
 
 
 
 type BrandType = Post & Posts;
 
 
-const Brand = ({ post, morePosts }: {post:Post, morePosts: Posts}) => {
-    const[ title, setTitle] = useState('fake-title');
-    useEffect(() => {
-        setTitle(post.title)
-    }, [post]);
+const Brand = ({ post, morePosts }: { post: Post, morePosts: Posts }) => {
 
     return (
-        <View>
-            <Header />
-            <Text style={styles.headline}>{title}</Text>
-            { morePosts && morePosts.length > 0 && <MoreStories allPosts={morePosts} />}
-        </View>
+        <ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
+              <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>{post.title}</Text>
+           
+                { morePosts && morePosts.length > 0 && <MoreStories allPosts={morePosts} />}
+            </Layout>
+        </ApplicationProvider>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "yellow",
-        border: "1 solid black"
-    },
-    headline: {
-        fontSize: 32,
-    },
-    text: {
-        fontSize: 16,
-    },
-});
 
 
 export default Brand;
 
 
 
-export  const  getStaticProps = async  ( { params, preview= null }: { params:Post, preview:Preview  }) => {
+export const getStaticProps = async ({ params, preview = null }: { params: Post, preview: Preview }) => {
 
     const data = await getBrandAndMoreBrands(params.slug, preview)
-    const content:string = await markdownToHtml(data.post?.metadata?.content || '')
-  
+    const content: string = await markdownToHtml(data.post?.metadata?.content || '')
+
     return {
-      props: {
-        preview,
-        post: {
-          ...data.post,
-          content,
+        props: {
+            preview,
+            post: {
+                ...data.post,
+                content,
+            },
+            morePosts: data.morePosts || [],
         },
-        morePosts: data.morePosts || [],
-      },
     }
-  }
-  
-  export const getStaticPaths: GetStaticPaths = async () => {
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
     const slugs = (await getAllBrandsWithSlug()) || []
     return {
-      paths: slugs.map((post) => `/brands/${post.slug}`),
-      fallback: true,
+        paths: slugs.map((post) => `/brands/${post.slug}`),
+        fallback: true,
     }
-  } 
+} 

@@ -5,12 +5,13 @@ import Link from 'next/link'
 
 const PostPreview = ({ title, slug }: { title:string, slug:string }) => {
   return (
-    <View>
+    <View style={styles.container}>
 
-      <Text>
-        <Link as={`/brands/${slug}`} href="/brands/[slug]">
+      <Text style={styles.copy}>
+        {/* <Link as={`/brands/${slug}`} href="/brands/[slug]">
           <a>{title}</a>
-        </Link>
+        </Link> */}
+        {title}
       </Text>
 
 
@@ -19,4 +20,16 @@ const PostPreview = ({ title, slug }: { title:string, slug:string }) => {
   )
 }
 
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 30
+    },
+    copy: {
+       color: 'white',
+       fontSize: 16
+    },
+   
+
+});
 export default PostPreview;
