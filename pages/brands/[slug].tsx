@@ -13,7 +13,8 @@ import { getAllBrandsWithSlug, getBrandAndMoreBrands } from '../../lib/api'
 import markdownToHtml from '../../lib/markdownToHtml'
 import Header from '../../components/head'
 import MoreStories from '../../components/more-stories'
-import { Post, Posts, Preview } from '../../interfaces';
+import PostHeader from '../../components/post-header'
+import { Post, Posts, Preview, LogoType } from '../../interfaces';
 import { default as mapping } from '../../mapping.json';
 
 type BrandType = Post & Posts;
@@ -31,6 +32,7 @@ const Brand = ({ post, morePosts }: { post: Post, morePosts: Posts }) => {
         // customMapping={mapping}
         >
         <Layout>
+            <PostHeader logo={post.metadata.logo} />
             <Text style={{ fontFamily: 'Lato' }}>{post.title}</Text>
 
             { morePosts && morePosts.length > 0 && <MoreStories allPosts={morePosts} />}

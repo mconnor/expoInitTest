@@ -1,4 +1,4 @@
-import { View, Image,StyleSheet, ImageSourcePropType} from 'react-native';
+import { View, Image,StyleSheet} from 'react-native';
 import React from 'react';
 import { LogoType } from '../interfaces'
 

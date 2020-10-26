@@ -1,16 +1,21 @@
 
-
+import { ImageSourcePropType} from 'react-native';
 
 
 export interface Post {
     slug: string;
     title: string;
     content?: string;
-    metadata?: any;
+    metadata: {
+        logo:ImageSourcePropType;
+    };
 }
 
 
-
+export interface LogoType {
+    imgix_url:ImageSourcePropType;
+    url: ImageSourcePropType;
+}
 
 export interface Posts extends Array<Post> {
     allPosts?: Post[]
