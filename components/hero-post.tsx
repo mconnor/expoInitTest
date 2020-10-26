@@ -21,6 +21,7 @@ const HeroPost = ({ title, slug }: { title: string, slug: string }) => {
 const styles = StyleSheet.create({
     text: {
         fontSize: 48,
+        fontFamily: 'Lato'
     },
 });
 

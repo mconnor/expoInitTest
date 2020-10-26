@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 2,
     },
     headline: {
-        fontSize: 36
+        fontSize: 36,
+        fontFamily: 'Lato'
     }
 });
 

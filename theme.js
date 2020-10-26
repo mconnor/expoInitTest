@@ -1,7 +1,7 @@
-import { default } from '@eva-design/eva';
+import { default as eva } from '@eva-design/eva';
 
 export const myTheme = {
-  ...default,
+  ...eva,
 
   "color-primary-100": "#D6E4FF",
   "color-primary-200": "#ADC8FF",

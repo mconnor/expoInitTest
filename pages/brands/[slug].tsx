@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link'
 import * as eva from '@eva-design/eva';
-import { default as theme } from '../../custom-theme.json';
+import { default as theme } from '../../theme.json';
 
-import { ApplicationProvider, Layout, Text, Card } from '@ui-kitten/components';
+import {ApplicationProvider, Layout, Text, Button } from '@ui-kitten/components';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
@@ -13,22 +14,36 @@ import markdownToHtml from '../../lib/markdownToHtml'
 import Header from '../../components/head'
 import MoreStories from '../../components/more-stories'
 import { Post, Posts, Preview } from '../../interfaces';
-
-
+import { default as mapping } from '../../mapping.json';
 
 type BrandType = Post & Posts;
 
 
 const Brand = ({ post, morePosts }: { post: Post, morePosts: Posts }) => {
-
+    const [title, setTitle] = useState('xxxx')
+    useEffect(() => {
+      setTitle(post.title)
+    }, [post])
     return (
-        <ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
-              <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{post.title}</Text>
-           
-                { morePosts && morePosts.length > 0 && <MoreStories allPosts={morePosts} />}
-            </Layout>
+        <ApplicationProvider
+        {...eva}
+        theme={{ ...eva.dark, ...theme }}
+        // customMapping={mapping}
+        >
+        <Layout>
+            <Text style={{ fontFamily: 'Lato' }}>{post.title}</Text>
+
+            { morePosts && morePosts.length > 0 && <MoreStories allPosts={morePosts} />}
+            <Link href="../">
+                <Button>ui kitten HOME button </Button>
+            </Link>
+        
+            <Link href="../">
+                <Button>HOME</Button>
+            </Link>
+        </Layout>
         </ApplicationProvider>
+
     );
 }
 
