@@ -1,37 +1,41 @@
-import { View, Image,StyleSheet} from 'react-native';
+import { View, Image, StyleSheet} from 'react-native';
 import React from 'react';
 import { LogoType } from '../interfaces'
 
-
+import { Avatar, Button, Divider, Text } from '@ui-kitten/components';
 const PostHeader = ({ logo }:{ logo:LogoType  }) => {
     return (
-        <View style={styles.container}>
-            <Image
-                source={logo.imgix_url}
-                style={styles.img}
-            >
-            </Image>
-        </View >
+        <>
+            <View style={styles.container}>
+                <Avatar
+                    style={styles.avatar}
+                    shape='square'
+                    source={logo.imgix_url}
+                >
+                </Avatar>
+            
+            </View >
+            <Divider/>
+         </>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: 'white',
-      borderRadius: 10,
-      borderColor: 'black',
-      width: 350,
-      height: 350,
-      flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
+        alignItems: 'center',
+        justifyItems: 'center',
+        marginVertical: 4,
 
     },
     img: {
       width: 340,
       height: 340,
     },
+    avatar: {
+        margin: 8,
+        justifyContent: 'center'
+    }
   });
 
 

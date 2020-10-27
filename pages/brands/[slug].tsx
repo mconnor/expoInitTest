@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link'
+import { View, Image, StyleSheet} from 'react-native';
 import * as eva from '@eva-design/eva';
 import { default as theme } from '../../theme.json';
 
@@ -31,7 +32,7 @@ const Brand = ({ post, morePosts }: { post: Post, morePosts: Posts }) => {
         theme={{ ...eva.dark, ...theme }}
         // customMapping={mapping}
         >
-        <Layout>
+        <Layout style={styles.container}>
             <PostHeader logo={post.metadata.logo} />
             <Text style={{ fontFamily: 'Lato' }}>{post.title}</Text>
 
@@ -79,3 +80,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
         fallback: true,
     }
 } 
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+      alignItems: 'center'
+    },
+    avatar: {
+      margin: 8,
+    },
+  });
